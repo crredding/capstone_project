@@ -21,7 +21,7 @@ def make_recommendations(f1, f2, f3, lat, lng, df, n=3):
 
     n: Int - Number of recommendations to return (Default, 3)
 
-    Outputs:
+    Output:
     --------
     Recommendations: List - Top recommendations based on the user's input
     '''
@@ -33,7 +33,7 @@ def make_recommendations(f1, f2, f3, lat, lng, df, n=3):
                   '{}'.format(user_feature_names[0]),
                   '{}'.format(user_feature_names[1]),
                   '{}'.format(user_feature_names[2])]]
-    distance_filtered_df = filter_by_lat_lng(lat, lng, user_df)
+    distance_filtered_df = _filter_by_lat_lng(lat, lng, user_df)
     sorted_df = _sort_features(chosen_features, distance_filtered_df)
     return list(sorted_df.iloc[0:n-1]['name'])
 
@@ -67,8 +67,31 @@ def _sort_features(chosen_features, user_df):
                                                           + row['feature_names[1]']
                                                           + row['feature_names[2]'],
                                                 axis=1)
+
     sorted_df = user_df[['name', 'combined_weights']]
+    sorted_df = sorted_df.sort_value('combined_weights', ascending=True)
     return sorted_df
 
+def _filter_by_lat_lng(lat, lng, df, range=100):
+    '''
+    Takes in a user's latitude and longitude and a dataframe including
+    coffeeshop latitudes and longitudes and filters out coffeeshops that are
+    not within a particular distance
 
-def filter_by_lat_lng(lat, lng, df):
+    Paramters:
+    ----------
+    lat: Float - User's latitude
+
+    lng: Float - User's longitude
+
+    df: Pandas DataFrame - The primary recommender dataframe including the W
+    matrix from NMF
+
+    range: ____________(Default: __)
+
+    Output:
+    -------
+    distance_filtered_df: Pandas DataFrame - Pandas Dataframe only including
+    coffeeshops that are within the specified range of the input latitude and
+    longitude
+    '''
