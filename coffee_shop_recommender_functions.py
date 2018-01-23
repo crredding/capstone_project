@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from geopy.distance import great_circle
 
 def make_recommendations(f1, f2, f3, lat, lng, df, n=3):
     '''
@@ -72,7 +73,7 @@ def _sort_features(chosen_features, user_df):
     sorted_df = sorted_df.sort_value('combined_weights', ascending=True)
     return sorted_df
 
-def _filter_by_lat_lng(lat, lng, df, range=100):
+def _filter_by_lat_lng(lat, lng, df, range=1):
     '''
     Takes in a user's latitude and longitude and a dataframe including
     coffeeshop latitudes and longitudes and filters out coffeeshops that are
@@ -87,7 +88,7 @@ def _filter_by_lat_lng(lat, lng, df, range=100):
     df: Pandas DataFrame - The primary recommender dataframe including the W
     matrix from NMF
 
-    range: ____________(Default: __)
+    range: Range, in miles, to restrict recommendations to (Default: 1)
 
     Output:
     -------
@@ -95,3 +96,10 @@ def _filter_by_lat_lng(lat, lng, df, range=100):
     coffeeshops that are within the specified range of the input latitude and
     longitude
     '''
+    current_location = (lat, lng)
+    df['distance_from_location'] = df.apply(lambda row: great_circle(current_location,
+                                                        (row['location.lat'],
+                                                         row['location.lng'])).miles,
+                                            axis=1)
+    distance_filtered_df = df[df['distance_from_location'] < range]
+    return distance_filtered_df
