@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 import pandas as pd
 
 from recommender_model import RecommenderModel
@@ -17,16 +17,13 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    print('submitting')
-    data = request.json
-    f1_name, f2_name, f3_name = str(data[f1_name], data[f2_name], data[f3_name])
-    f1_weight, f2_weight, f3_weight = float(data[f1_weight], data[f2_weight],
-                                          data[f3_weight])
-    f1 = tuple(f1_weight, f1_name)
-    f2 = tuple(f2_weight, f2_name)
-    f3 = tuple(f3_weight, f3_name)
+    f1 = tuple((float(request.form['f1_weight']), request.form['feature1']))
+    f2 = tuple((float(request.form['f2_weight']), request.form['feature2']))
+    f3 = tuple((float(request.form['f3_weight']), request.form['feature3']))
     recommendations = model.recommend(f1, f2, f3, lat, lng)
-    return jsonify(recommendations)
+    print(recommendations)
+    return redirect('/')
+    # return jsonify(recommendations)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', threaded=True, debug=True)

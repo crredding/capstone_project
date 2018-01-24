@@ -26,13 +26,10 @@ def make_recommendations(f1, f2, f3, lat, lng, df, n=3):
     --------
     Recommendations: List - Top recommendations based on the user's input
     '''
-    #Will need to create a map from user input to feature names
-    #Currently prentending columns are the names of the features
+
     chosen_features = [f1, f2, f3]
     distance_filtered_df = _filter_by_lat_lng(lat, lng, df)
-    #return distance_filtered_df
     sorted_df = _sort_features(chosen_features, distance_filtered_df)
-    #return sorted_df
     return list(sorted_df.iloc[0:n]['name'])
 
 def _sort_features(chosen_features, user_df):
@@ -71,7 +68,7 @@ def _sort_features(chosen_features, user_df):
     sorted_df = sorted_df.sort_values('combined_weights', ascending=False)
     return sorted_df
 
-def _filter_by_lat_lng(lat, lng, df, range=15):
+def _filter_by_lat_lng(lat, lng, df, range=20):
     '''
     Takes in a user's latitude and longitude and a dataframe including
     coffeeshop latitudes and longitudes and filters out coffeeshops that are
