@@ -46,7 +46,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     f3_weight = $('#f3_weight').val()
 
     $.post({
-      url: '/submit',
+    url: '/submit',
     contentType: "application/json",
     data: JSON.stringify(f1_name, f2_name, f3_name, f1_weight, f2_weight, f3_weight),
     success: function(result){
@@ -174,59 +174,62 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<img src="static/images/coffee_logo.png" alt=" ">
 							<h3>You're on your way</h3>
 							<h4>to good coffee.</h4>
-						</div>
+            </div>
+
 						<div class="banner_search">
-								<form action="#" method="post">
-                  <select name="feature1">
-                    <option value='' disabled selected>Select your option</option>
-                    <option value='Fun for families'>Fun for families </option>
-                    <option value='Nice for studying and working'>Nice for studying and working</option>
-                    <option value='Lovely ambiance'>Lovely ambiance</option>
-                  </select>
-                  <div class="slidecontainer">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="f1_weight">
-                  </div>
-                  <br>
-                  <select name="feature2">
-                    <option value='' disabled selected>Select your option</option>
-                    <option value='Fun for families'>Fun for families</option>
-                    <option value='Nice for studying and working'>Nice for studying and working</option>
-                    <option value='Lovely ambiance'>Lovely ambiance</option>
-                  </select>
-                  <div class="slidecontainer">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="f2_weight">
-                  </div>
-                  <br>
-                  <select name="feature3">
-                    <option value='' disabled selected>Select your option</option>
-                    <option value='Fun for families'>Fun for families</option>
-                    <option value='Nice for studying and working'>Nice for studying and working</option>
-                    <option value='Lovely ambiance'>Lovely ambiance</option>
-                  </select>
-                  <div class="slidecontainer">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="f3_weight">
-                  </div>
-                  <br>
+
 
                   <!--<input type="search" name="search" value="Where to go ?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Where to go ?';}" required="">
                   -->
+
                   <button onclick="submit();">Go!</button>
                   <!--<input type="submit" value=" ">
                   -->
 
-								</form>
+								<!--</form>-->
 						</div>
 
 
 				</div>
 			</div>
     <p><span class="hidden"></span></p>
-		<div class="w3agile banner-bottom">
+    <!--<form action="#" method="post">-->
+      <select name="feature1">
+        <option value='' disabled selected>Select your option</option>
+        <option value='Fun for families'>Fun for families </option>
+        <option value='Nice for studying and working'>Nice for studying and working</option>
+        <option value='Lovely ambiance'>Lovely ambiance</option>
+      </select>
+      <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="50" class="slider" id="f1_weight">
+      </div>
+      <br>
+      <select name="feature2">
+        <option value='' disabled selected>Select your option</option>
+        <option value='Fun for families'>Fun for families</option>
+        <option value='Nice for studying and working'>Nice for studying and working</option>
+        <option value='Lovely ambiance'>Lovely ambiance</option>
+      </select>
+      <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="50" class="slider" id="f2_weight">
+      </div>
+      <br>
+      <select name="feature3">
+        <option value='' disabled selected>Select your option</option>
+        <option value='Fun for families'>Fun for families</option>
+        <option value='Nice for studying and working'>Nice for studying and working</option>
+        <option value='Lovely ambiance'>Lovely ambiance</option>
+      </select>
+      <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="50" class="slider" id="f3_weight">
+      </div>
+      <br>
+    <div class="w3agile banner-bottom">
 				<ul>
-				    <li><a href="flight.html" class="hvr-radial-out"><i class="fa fa-plane" aria-hidden="true"></i></a><h6>Flight</h6></li>
-					<li><a href="train.html" class="hvr-radial-out"><i class="fa fa-train" aria-hidden="true"></i></a><h6>Train</h6></li>
-					<li><a href="bus.html" class="hvr-radial-out"><i class="fa fa-bus" aria-hidden="true"></i></a><h6>Bus</h6></li>
-					<li><a href="hotel.html" class="hvr-radial-out"><i class="fa fa-bed" aria-hidden="true"></i></a><h6>Hotels</h6></li>
+				    <li><a href="flight.html" class="hvr-radial-out"><i class="fa fa-plane" aria-hidden="true"></i></a><h6>Coffee</h6></li>
+					<li><a href="train.html" class="hvr-radial-out"><i class="fa fa-train" aria-hidden="true"></i></a><h6>Is</h6></li>
+					<li><a href="bus.html" class="hvr-radial-out"><i class="fa fa-bus" aria-hidden="true"></i></a><h6>Super</h6></li>
+					<li><a href="hotel.html" class="hvr-radial-out"><i class="fa fa-bed" aria-hidden="true"></i></a><h6>Great!</h6></li>
 				</ul>
 			</div>
    <!-- //banner -->
