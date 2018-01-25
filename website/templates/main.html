@@ -35,7 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <link href='//fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- //web-fonts -->
-<!-- submit-button -->
+<!-- s
 <script>
   send_away = function(){
     f1_name = $('#feature1').val()
@@ -55,7 +55,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   });
 }
 </script>
-
+ubmit-button -->
 <!-- pop-up-box -->
 <script src="static/js/jquery.magnific-popup.js" type="text/javascript"></script>
 	    <script>
@@ -107,7 +107,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<h5 class="pro-link"><a href="main.html">Cafe Finder</a></h5>
 				</div>
 				<div class="Profile-right">
-					<a href="#small-dialog" class="sign-in popup-top-anim"> <i class="fa fa-user"></i></a>
+					<!--<a href="#small-dialog" class="sign-in popup-top-anim"> <i class="fa fa-user"></i></a>-->
 						<!-- modal -->
 					<div id="small-dialog" class="mfp-hide">
 						<div class="login-modal">
@@ -194,11 +194,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
     <p><span class="hidden"></span></p>
   <form action="/submit" method="post">
+    <div class='drop_down_feature'>
       <select name="feature1">
         <option value='' disabled selected>Select your option</option>
         <option value='Fun for families'>Fun for families </option>
         <option value='Nice for studying and working'>Nice for studying and working</option>
         <option value='Lovely ambiance'>Lovely ambiance</option>
+    </div>
       </select>
       <div class="slidecontainer">
         <input type="range" min="1" max="100" value="50" class="slider" name="f1_weight">
@@ -211,10 +213,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <option value='Nice for studying and working'>Nice for studying and working</option>
         <option value='Lovely ambiance'>Lovely ambiance</option>
       </select>
-      <div class="slidecontainer">
         <input type="range" min="1" max="100" value="50" class="slider" name="f2_weight">
         <output for="f2_weight" onforminput='f2_weight = f2_weight.valueAsNumber;'></output>
-      </div>
       <br>
       <select name="feature3">
         <option value='' disabled selected>Select your option</option>
@@ -226,12 +226,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <input type="range" min="1" max="100" value="50" class="slider" name="f3_weight">
         <output for="f3_weight" onforminput='f3_weight = f3_weight.valueAsNumber;'></output>
       </div>
-      <br>
       <!--<input type="search" name="search" value="Where to go ?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Where to go ?';}" required="">-->
     <!--<button onclick="send_away();">Go!</button>-->
-
-    <input type='submit' value='Go!'>
+    <div class="search">
+      <input type='submit' value='Go!'>
+    </div>
   </form>
+  <!--
     <div class="w3agile banner-bottom">
 				<ul>
 				    <li><a href="flight.html" class="hvr-radial-out"><i class="fa fa-plane" aria-hidden="true"></i></a><h6>Coffee</h6></li>
@@ -242,6 +243,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
    <!-- //banner -->
    <!--/welcome-->
+   <!--
 		        <div class="w3agile welcome">
 					<h3 class="w3ls-title">Welcome !</h3>
 					<div class="b-bottom">
@@ -332,7 +334,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h3>About Us</h3>
 				<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis
 					voluptatibus.</p>
-				<h3 class="logo"><a href="main.html">T<span>r</span>a<span>v</span>e<span>l</span> <span>H</span>u<span>n</span>t</a></h3>
+				<h3 class="logo"><a href="main.html">C<span>a</span>f<span>e</span> <span>F</span>i<span>n</span>d<span>e</span>r</a></h3>
 			</div>
 			<div class="col-md-2 w3agile_footer_grid">
 				<h3>Links</h3>
@@ -344,17 +346,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</ul>
 			</div>
 			<div class="col-md-4 w3agile_footer_grid">
-				<h3>Twitter Posts</h3>
+        <!--
+        <h3>Twitter Posts</h3>
 				<ul class="w3agile_footer_grid_list">
 					<li>Ut aut reiciendis voluptatibus maiores alias, ut aut reiciendis.
 						<span><i class="fa fa-twitter" aria-hidden="true"></i> 02 days ago</span></li>
 					<li>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis
 						voluptatibus.<span><i class="fa fa-twitter" aria-hidden="true"></i> 03 days ago</span></li>
 				</ul>
+      -->
 			</div>
 			<div class="col-md-3 w3agile_footer_grid">
-				<h3>Newsletter</h3>
-				<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus.</p>
+				<h3>Contact</h3>
+				<p>Get in touch with the creator.</p>
 				<ul class="social">
 					<form action="#" method="post">
 					  <input type="text" name="Email" placeholder="Enter Email..." required="">
@@ -368,19 +372,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="w3agile agileinfo_copy_right">
 			<div class="agileinfo_copy_right_left">
-				<p>© 2016 Travel Hunt. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+				<p>© 2018 Charles Redding. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 			</div>
-			<div class="agileinfo_copy_right_right">
+			<!--<div class="agileinfo_copy_right_right">
 				<ul class="social">
-					<li><a class="social-linkedin" href="#">
+					<li><a class="social-linkedin" href="https://www.linkedin.com/in/reddingcharles/">
 						<i></i>
-						<div class="tooltip"><span>Facebook</span></div>
+						<div cl
+            ass="tooltip"><span>LinkedIn</span></div>
 						</a></li>
-					<li><a class="social-twitter" href="#">
+					<li><a class="social-github" href="https://github.com/crredding">
 						<i></i>
-						<div class="tooltip"><span>Twitter</span></div>
+						<div class="tooltip"><span>Github</span></div>
 						</a></li>
-					<li><a class="social-google" href="#">
+					<!--<li><a class="social-google" href="#">
 						<i></i>
 						<div class="tooltip"><span>Google+</span></div>
 						</a></li>
@@ -391,7 +396,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<li><a class="social-instagram" href="#">
 						<i></i>
 						<div class="tooltip"><span>Instagram</span></div>
-						</a></li>
+          </a></li>-->
 				</ul>
 			</div>
 			<div class="clearfix"> </div>

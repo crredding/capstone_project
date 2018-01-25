@@ -455,7 +455,7 @@ p {
     -o-background-size: cover;
 }
 .details-grid.ht{
-	  background: url(../images/banner-hotel.jpg) no-repeat 0px 0px;
+	  background: url(../images/coffee_pouring.jpg) no-repeat 0px 0px;
     background-size: cover;
 	-webkit-background-size: cover;
 	 -moz-background-size: cover;
@@ -2318,12 +2318,12 @@ ul.social li{
   font-size: 1.5rem;
 }
 .social li a.social-linkedin i{
-	background: url(../images/img-sp.png) no-repeat -8px -230px;
+	background: url(../images/in_white.png) no-repeat -51px -236px;
     display: block;
     width: 20px;
     height: 16px;
 }
-.social li a.social-twitter i{
+.social li a.social-github i{
 	background:url(../images/img-sp.png) no-repeat -51px -236px;
     display: block;
     width: 20px;
@@ -3703,4 +3703,8 @@ input[type="file"] {
 		border-radius: 50%;
     background: #959595; /* Green background */
     cursor: pointer; /* Cursor on hover */
+}
+
+.drop_down_feature {
+
 }
