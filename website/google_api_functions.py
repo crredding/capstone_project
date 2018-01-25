@@ -1,5 +1,6 @@
 import json, requests
 from io import BytesIO
+import base64
 
 def populate_google_search_url(lat, lng, place_name, api_key):
     '''
@@ -40,10 +41,18 @@ def get_google_api_photo_id(lat, lng, name, api_key):
         return None
 
 def get_google_photo(lat, lng, name, api_key):
-    photoreference = get_google_api_photo_id(lat, lng, name, api_key)
+    try:
+        photoreference = get_google_api_photo_id(lat, lng, name, api_key)
+        photo_url = populate_google_photos_url(photoreference, api_key)
+        photo_resp = requests.get(url=photo_url)
+        return photo_resp.content
+    except:
+        return None
+
+def get_google_photo_from_ref(photoreference, api_key):
     photo_url = populate_google_photos_url(photoreference, api_key)
     photo_resp = requests.get(url=photo_url)
-    return photo_resp.content
+    return base64.b64encode(photo_resp.content).encode()
 
 def populate_google_details_url(google_id, api_key):
     '''
