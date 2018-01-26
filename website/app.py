@@ -21,7 +21,7 @@ lat, lng = 47.612133, -122.335908
 
 with open('static/images/default_shop_image.jpg', 'rb') as f1:
     f2 = f1.read()
-    default_shop_image = base64.b64encode(bytearray(f2)).decode()
+    default_shop_image = base64.b64encode(bytearray(f2))
 
 @app.route('/')
 def index():
@@ -36,25 +36,8 @@ def submit():
     recs = model.recommend(f1, f2, f3, lat, lng, r).to_dict('records')
     for rec in recs:
         rec['split_address'] = rec['address'].replace(' ', '+') + '+seattle'
-    # for rec in recs:
-    #     try:
-    #         rec['photo'] = ('data:image/jpeg;base64;' +
-    #                         get_google_photo(rec['lat'], rec['lng'],
-    #                         rec['name'], google_secrets['key']))
-    #     except:
-    #         rec['photo'] = 'static/images/default.png'
-    print(r)
-    print(recs)
+    print(request.form)
     return render_template('recommendations.html', recs=recs)
-
-@app.route('/shop_image/<shop_id>')
-def get_image(shop_id):
-    image = Path('shop_images/{}.jpg'.format(shop_id))
-    if image.is_file():
-        return 'data:image/jpeg;base64;{}'.format(image.read_bytes().decode())
-    else:
-        return 'data:image/jpeg;base64;{}'.format(default_shop_image)
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', threaded=True, debug=True)

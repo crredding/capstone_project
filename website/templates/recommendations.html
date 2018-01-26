@@ -214,7 +214,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<p></p>
 						<div class="hotel-left-grids">
 							<div class="hotel-left-one">
-								<a data-toggle="modal" data-target="#myModalbook"><img src="/shop_image/{{rec.shop_id}}" alt=""></a>
+								<a data-toggle="modal" data-target="#myModalbook"><img src='/static/shop_images/{{rec.shop_id}}.jpg' alt='oops. no image.' onerror="this.src='/static/shop_images/default_shop_image.jpg';"/></a>
 								<span class="sale-box">
 								  <span class="sale-label">{{rec.percent_match | round | int}}% match</span>
 								</span>

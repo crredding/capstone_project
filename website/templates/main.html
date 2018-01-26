@@ -196,22 +196,21 @@ ubmit-button -->
 			</div>
     <p><span class="hidden"></span></p>
     <div class="col-lg-6 in-gp-tl">
-      <div class="input-group">
-        <span class="input-group-btn">
-          <a><button onclick="getLocation()" class="btn btn-default" type="button">Get your location!</button>
-        </span>
-        <div class="hotel-right text-right">
-          <h5>
-          <p><span id="demo"></span></p>
-        </h5>
-        </div>
-        </a>
-
+      <!-- <div class="input-group">
+        <span class="input-group-btn"> -->
         <!--<input type="text" class="form-control" placeholder="<-- click me">
       </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
+    <!-- </div><!-- /.col-lg-6 -->
 
   <form action="/submit" method="post">
+        <a><button onclick="getLocation()" class="btn btn-default" type="button">Get your location!</button>
+      </span>
+      <div>
+        <h5>
+        <p><span id="demo"></span></p>
+      </h5>
+      </div>
+      </a>
       <a><h3 class='hdg'>How far will you go?</h3><output name="Outputrange" id="OutputId">10</output></a>
       <div class="slidecontainer">
         <input type="range" min="1" max="20" step=0.1 value="10" class="slider" name="range" id="rangeid" oninput="OutputId.value = rangeid.value">
@@ -348,9 +347,7 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    x.innerHTML = "Got it!"
-    // x.innerHTML = "Latitude: " + position.coords.latitude +
-    // "<br>Longitude: " + position.coords.longitude;
+    x.innerHTML = position.coords.latitude + ',' + position.coords.longitude;
 }
 </script>
 <script>
