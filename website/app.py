@@ -16,9 +16,6 @@ df = pd.read_csv('../data/df_with_features.csv', index_col=0)
 mapping_df = pd.read_csv('../data/mapping_df.csv', index_col=0)
 model = RecommenderModel(df, mapping_df)
 
-#This is just for testing, before lat and lng incorporated into the model
-lat, lng = 47.612133, -122.335908
-
 with open('static/images/default_shop_image.jpg', 'rb') as f1:
     f2 = f1.read()
     default_shop_image = base64.b64encode(bytearray(f2))
@@ -32,11 +29,13 @@ def submit():
     f1 = tuple((float(request.form['f1_weight']), request.form['feature1']))
     f2 = tuple((float(request.form['f2_weight']), request.form['feature2']))
     f3 = tuple((float(request.form['f3_weight']), request.form['feature3']))
+    lat = request.form['coord'].split(',')[0]
+    lng = request.form['coord'].split(',')[1]
     r = float(request.form['range'])
+    print(r)
     recs = model.recommend(f1, f2, f3, lat, lng, r).to_dict('records')
     for rec in recs:
         rec['split_address'] = rec['address'].replace(' ', '+') + '+seattle'
-    print(request.form)
     return render_template('recommendations.html', recs=recs)
 
 if __name__ == '__main__':

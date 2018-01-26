@@ -194,7 +194,7 @@ ubmit-button -->
 
 				</div>
 			</div>
-    <p><span class="hidden"></span></p>
+<br>
     <div class="col-lg-6 in-gp-tl">
       <!-- <div class="input-group">
         <span class="input-group-btn"> -->
@@ -204,11 +204,11 @@ ubmit-button -->
 
   <form action="/submit" method="post">
         <a><button onclick="getLocation()" class="btn btn-default" type="button">Get your location!</button>
-      </span>
       <div>
         <h5>
-        <p><span id="demo"></span></p>
+        <input type='hidden' name='coord' id="coord"></input>
       </h5>
+      <br>
       </div>
       </a>
       <a><h3 class='hdg'>How far will you go?</h3><output name="Outputrange" id="OutputId">10</output></a>
@@ -336,7 +336,7 @@ ubmit-button -->
 <script src="static/js/jquery.nicescroll.js"></script>
 <script src="static/js/scripts.js"></script>
 <script>
-var x = document.getElementById("demo");
+var x = document.getElementById("coord");
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -347,8 +347,8 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    x.innerHTML = position.coords.latitude + ',' + position.coords.longitude;
-}
+    x.value = (position.coords.latitude + ',' + position.coords.longitude);
+  }
 </script>
 <script>
 function updateTextInput(val) {

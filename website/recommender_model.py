@@ -25,7 +25,7 @@ class RecommenderModel():
         self.df = df
         self.mapping_df = mapping_df
 
-    def recommend(self, f1, f2, f3, lat, lng, r=3, n=3):
+    def recommend(self, f1, f2, f3, lat, lng, r=20, n=3):
         '''
         Takes in a user's preferences for three features, their geographic
         coordinates and outputs the top recommended coffee shops for them.
@@ -36,7 +36,7 @@ class RecommenderModel():
         for a user and the name of that feature
         lat: Float - User's latitude
         lng: Float - User's longitude
-        r: Float - Max distance in miles that the user will travel.
+        r: Float - Max distance in miles that the user will travel (Default:20)
         n: Int - Number of recommendations to return (Default, 3)
 
         Output:
@@ -87,7 +87,7 @@ class RecommenderModel():
         sorted_df = sorted_df.sort_values('combined_weights', ascending=False)
         return sorted_df
 
-    def _filter_by_lat_lng(self, lat, lng, r=20):
+    def _filter_by_lat_lng(self, lat, lng, r):
         '''
         Takes in a user's latitude and longitude and a dataframe including
         coffeeshop latitudes and longitudes and filters out coffeeshops that are
@@ -97,7 +97,7 @@ class RecommenderModel():
         ----------
         lat: Float - User's latitude
         lng: Float - User's longitude
-        r: Range, in miles, to restrict recommendations to (Default: 20)
+        r: Range, in miles, to restrict recommendations to
 
         Output:
         -------
