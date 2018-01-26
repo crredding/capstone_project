@@ -363,7 +363,7 @@ h3.w3ls-title2 {
     width: 100%;
 }
 p {
-    line-height: 1.8em;
+    line-height: 1em;
     color: #555;
     font-weight: 400;
 	margin-bottom: 1em;
@@ -1282,7 +1282,8 @@ h2.typoh2{
 /*-- //short-codes --*/
 /*--/hotel-single--*/
 .hotel-left-one img {
-    width: 100%;
+		width: 100%;
+		overflow: hidden;
 	   margin-top: 10px;
 }
 .hotel-left-one p {
@@ -3679,6 +3680,7 @@ input[type="file"] {
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: .2s; /* 0.2 seconds transition on hover */
     transition: opacity .2s;
+
 }
 
 /* Mouse-over effects */

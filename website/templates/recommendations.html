@@ -208,7 +208,7 @@ ubmit-button -->
 						<p></p>
 						<div class="hotel-left-grids">
 							<div class="hotel-left-one">
-								<a data-toggle="modal" data-target="#myModalbook"><img src="/shop_image/{{rec.photo}}" alt=""></a>
+								<a data-toggle="modal" data-target="#myModalbook"><img src="/shop_image/{{rec.shop_id}}" alt=""></a>
 								<span class="sale-box">
 								  <span class="sale-label">{{rec.percent_match | round | int}}% match</span>
 								</span>
@@ -221,9 +221,9 @@ ubmit-button -->
 						</div>
 					</div>
 					<div class="hotel-right text-right">
-						<!--<h4><span>$8,750</span> $4,850</h4>
-						<p>Best price</p>-->
-						  <a href="#" data-toggle="modal" data-target="#myModalbook" class="seat-button hotel">Go here</a>
+						<!-- <h4><span>$8,750</span> $4,850</h4> -->
+						<!-- <p>Best price</p>-->
+						  <a href="https://www.google.com/maps/search/?api=1&query={{rec.split_address}}" data-toggle="modal" data-target="#myModalbook" class="seat-button hotel">Go here</a>
 					</div>
 					<div class="clearfix"></div>
 				</div>

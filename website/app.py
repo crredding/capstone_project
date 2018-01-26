@@ -6,6 +6,7 @@ from google_api_functions import *
 from io import BytesIO
 #from PIL import Image
 from pathlib import Path
+import base64
 
 with open('/Users/ReddingSkinnyRobot/.secrets/google_api.yaml') as f:
     google_secrets = yaml.load(f)
@@ -20,7 +21,7 @@ lat, lng = 47.612133, -122.335908
 
 with open('static/images/default_shop_image.jpg', 'rb') as f1:
     f2 = f1.read()
-    default_shop_image = base64.b64encode(bytearray(f2)).encode()
+    default_shop_image = base64.b64encode(bytearray(f2)).decode()
 
 @app.route('/')
 def index():
@@ -33,27 +34,23 @@ def submit():
     f3 = tuple((float(request.form['f3_weight']), request.form['feature3']))
     recs = model.recommend(f1, f2, f3, lat, lng).to_dict('records')
     for rec in recs:
-        try:
-            rec['photo'] = ('data:image/jpeg;base64;' +
-                            get_google_photo(rec['lat'], rec['lng'],
-                            rec['name'], google_secrets['key']))
-        except:
-            rec['photo'] = 'static/images/default.png'
+        rec['split_address'] = rec['address'].replace(' ', '+') + '+seattle'
+    # for rec in recs:
+    #     try:
+    #         rec['photo'] = ('data:image/jpeg;base64;' +
+    #                         get_google_photo(rec['lat'], rec['lng'],
+    #                         rec['name'], google_secrets['key']))
+    #     except:
+    #         rec['photo'] = 'static/images/default.png'
     return render_template('recommendations.html', recs=recs)
 
-@app.route('/shop_image/<photoreference:str>')
-def get_image():
-    image = Path('shop_images/{}'.format(photoreference))
-    if image.isfile():
-        return image
+@app.route('/shop_image/<shop_id>')
+def get_image(shop_id):
+    image = Path('shop_images/{}.jpg'.format(shop_id))
+    if image.is_file():
+        return 'data:image/jpeg;base64;{}'.format(image.read_bytes().decode())
     else:
-        try:
-            image = get_google_photo_from_ref(photoreference, google_secrets['key'])
-            with open ('shop_images/{}'.format(photoreference), 'wb') as output:
-                output.write(image)
-            return 'data:image/jpeg;base64;{}'.format(image)
-        except:
-            return 'data:image/jpeg;base64;{}'.format(default_shop_image)
+        return 'data:image/jpeg;base64;{}'.format(default_shop_image)
 
 
 if __name__ == '__main__':

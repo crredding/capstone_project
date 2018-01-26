@@ -47,9 +47,9 @@ class RecommenderModel():
         self.distance_filtered_df = self._filter_by_lat_lng(lat, lng)
         self.sorted_df = self._sort_features()
         top_three_df = self.sorted_df.iloc[0:n]
-        top_three_df['percent_match'] = top_three_df.apply(lambda row: row['combined_weights'] \
-                                                                     / top_three_df['combined_weights'].sum() \
-                                                                     * 100,
+        top_three_df['percent_match'] = top_three_df.apply(lambda row: (row['combined_weights']
+                                                                      / top_three_df['combined_weights'].sum()
+                                                                      * 100),
                                                            axis=1)
         return top_three_df
 
@@ -72,16 +72,16 @@ class RecommenderModel():
         self.feature_names = [item[1] for item in self.chosen_features]
         self.mapped_df = self._map_features()
         for item in self.chosen_features:
-            self.mapped_df['{}'.format(item[1])] = self.mapped_df['{}'.format(item[1])]   \
-                                                 * item[0]                          \
-                                                 / normalizing_weight
+            self.mapped_df['{}'.format(item[1])] = (self.mapped_df['{}'.format(item[1])]
+                                                  * item[0]
+                                                  / normalizing_weight)
 
-        self.mapped_df['combined_weights'] = self.mapped_df.apply(lambda row: row[self.feature_names[0]]   \
-                                                                            + row[self.feature_names[1]]   \
-                                                                            + row[self.feature_names[2]],
+        self.mapped_df['combined_weights'] = self.mapped_df.apply(lambda row: (row[self.feature_names[0]]
+                                                                             + row[self.feature_names[1]]
+                                                                             + row[self.feature_names[2]]),
                                                                   axis=1)
 
-        sorted_df = self.mapped_df[['name', 'lat', 'lng', 'address',
+        sorted_df = self.mapped_df[['name', 'lat', 'lng', 'address', 'shop_id',
                                     'distance_from_location', 'combined_weights']]
         sorted_df = sorted_df.sort_values('combined_weights', ascending=False)
         return sorted_df
@@ -128,12 +128,13 @@ class RecommenderModel():
         values
         '''
 
-        W = self.df.drop(['name', 'lat', 'lng', 'address', 'distance_from_location'],
-                         axis=1)
+        W = self.df.drop(['name', 'lat', 'lng', 'address', 'shop_id',
+                          'distance_from_location'], axis=1)
         mapping_df_columns = self.mapping_df.columns
         mapped_features = pd.DataFrame(np.dot(W,self.mapping_df),
                                        columns = mapping_df_columns)
         feature_mapped_df = pd.concat([self.df[['name', 'lat', 'lng', 'address',
+                                      'shop_id',
                                       'distance_from_location']].reset_index(drop=True),
                                mapped_features], axis=1)
         #print(user_df)

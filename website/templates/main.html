@@ -35,6 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <link href='//fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- //web-fonts -->
+
 <!-- s
 <script>
   send_away = function(){
@@ -76,6 +77,8 @@ ubmit-button -->
 <!--//pop-up-box -->
     </head>
 <body>
+
+
 <div class="body-back">
 	<div class="masthead pdng-stn1">
 		<div id="menu" class="panel" role="navigation">
@@ -178,9 +181,8 @@ ubmit-button -->
 
 						<div class="banner_search">
 
+                  <!-- <input type="search" name="search" value="Where to go ?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Where to go ?';}" required=""> -->
 
-                  <!--<input type="search" name="search" value="Where to go ?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Where to go ?';}" required="">
-                  -->
 
 
                   <!--<input type="submit" value=" ">
@@ -193,7 +195,28 @@ ubmit-button -->
 				</div>
 			</div>
     <p><span class="hidden"></span></p>
+    <div class="col-lg-6 in-gp-tl">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button onclick="getLocation()" class="btn btn-default" type="button">Get your location!</button>
+        </span>
+        <div class="hotel-right text-right">
+          <h5>
+          <p><span id="demo"></span></p>
+        </h5>
+        </div>
+
+        <!--<input type="text" class="form-control" placeholder="<-- click me">
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+
   <form action="/submit" method="post">
+      <h3 class='hdg'> How far will you go?</h3>
+      <div class="slidecontainer">
+        <input type="range" min="1" max="20" step=0.1 value="10" class="slider" name="range" id="rangeid" oninput="OutputId.value = rangeid.value">
+        <output for="range" onforminput='range = range.valueAsNumber;'></output>
+        <output name="Outputrange" id="OutputId">10</output>
+      </div>
     <div class='drop_down_feature'>
       <select name="feature1">
         <option value='' disabled selected>Select your option</option>
@@ -206,7 +229,6 @@ ubmit-button -->
         <input type="range" min="1" max="100" value="50" class="slider" name="f1_weight">
         <output for="f1_weight" onforminput='f1_weight = f1_weight.valueAsNumber;'></output>
       </div>
-      <br>
       <select name="feature2">
         <option value='' disabled selected>Select your option</option>
         <option value='Fun for families'>Fun for families</option>
@@ -215,7 +237,6 @@ ubmit-button -->
       </select>
         <input type="range" min="1" max="100" value="50" class="slider" name="f2_weight">
         <output for="f2_weight" onforminput='f2_weight = f2_weight.valueAsNumber;'></output>
-      <br>
       <select name="feature3">
         <option value='' disabled selected>Select your option</option>
         <option value='Fun for families'>Fun for families</option>
@@ -232,102 +253,7 @@ ubmit-button -->
       <input type='submit' value='Go!'>
     </div>
   </form>
-  <!--
-    <div class="w3agile banner-bottom">
-				<ul>
-				    <li><a href="flight.html" class="hvr-radial-out"><i class="fa fa-plane" aria-hidden="true"></i></a><h6>Coffee</h6></li>
-					<li><a href="train.html" class="hvr-radial-out"><i class="fa fa-train" aria-hidden="true"></i></a><h6>Is</h6></li>
-					<li><a href="bus.html" class="hvr-radial-out"><i class="fa fa-bus" aria-hidden="true"></i></a><h6>Super</h6></li>
-					<li><a href="hotel.html" class="hvr-radial-out"><i class="fa fa-bed" aria-hidden="true"></i></a><h6>Great!</h6></li>
-				</ul>
-			</div>
-   <!-- //banner -->
-   <!--/welcome-->
-   <!--
-		        <div class="w3agile welcome">
-					<h3 class="w3ls-title">Welcome !</h3>
-					<div class="b-bottom">
-			<div class="col-md-6 banner_bottom_left">
-				<h3>occaecat cupidatat proident</h3>
-				<p><i>Ut enim ad minima veniam</i> Quis nostrum exercitationem ullam corporis suscipit
-					laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-					reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-					vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.</p>
-				<div class="wthree_more wthree_more1">
-					<a href="#" class="button--wayra button--border-thick button--text-upper button--size-s">Read More</a>
-				</div>
-			</div>
-			<div class="col-md-6 banner_bottom_right">
-				<div class="wthree_banner_bottom_right_grids">
-					<div class="col-md-6 banner_bottom_right_grid">
-						<div class="view view-tenth">
-						<img src="static/images/4.jpg" class="img-responsive" alt="">
 
-							<div class="mask">
-							    <a href="flight.html">
-									  <div class="agile_text_box">
-											<i class="fa fa-plane" aria-hidden="true"></i>
-											<h3>Lorem ipsum</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adip.</p>
-									  </div>
-								 </a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 banner_bottom_right_grid">
-						<div class="view view-tenth">
-						<img src="static/images/5.jpg" class="img-responsive" alt="">
-
-							<div class="mask">
-							   <a href="train.html">
-									<div class="agile_text_box">
-										<i class="fa fa-train" aria-hidden="true"></i>
-										<h3>Train</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adip.</p>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="wthree_banner_bottom_right_grids">
-					<div class="col-md-6 banner_bottom_right_grid">
-						<div class="view view-tenth">
-						<img src="static/images/6.jpg" class="img-responsive" alt="">
-
-							<div class="mask">
-							  <a href="bus.html">
-								<div class="agile_text_box">
-									<i class="fa fa-bus" aria-hidden="true"></i>
-									<h3>Bus</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adip.</p>
-								</div>
-							   </a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 banner_bottom_right_grid">
-						<div class="view view-tenth">
-							<img src="static/images/7.jpg" class="img-responsive" alt="">
-							<div class="mask">
-							<a href="hotel.html">
-							  <div class="agile_text_box">
-								<i class="fa fa-bed" aria-hidden="true"></i>
-								<h3>Hotels</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adip.</p>
-							   </div>
-							   </a>
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-				</div>
-		<!--//welcome-->
 		<!--/footer-->
     <div class="w3agile footer">
 			<div class="col-md-3 w3agile_footer_grid">
@@ -346,15 +272,6 @@ ubmit-button -->
 				</ul>
 			</div>
 			<div class="col-md-4 w3agile_footer_grid">
-        <!--
-        <h3>Twitter Posts</h3>
-				<ul class="w3agile_footer_grid_list">
-					<li>Ut aut reiciendis voluptatibus maiores alias, ut aut reiciendis.
-						<span><i class="fa fa-twitter" aria-hidden="true"></i> 02 days ago</span></li>
-					<li>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis
-						voluptatibus.<span><i class="fa fa-twitter" aria-hidden="true"></i> 03 days ago</span></li>
-				</ul>
-      -->
 			</div>
 			<div class="col-md-3 w3agile_footer_grid">
 				<h3>Contact</h3>
@@ -374,29 +291,6 @@ ubmit-button -->
 			<div class="agileinfo_copy_right_left">
 				<p>© 2018 Charles Redding. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 			</div>
-			<!--<div class="agileinfo_copy_right_right">
-				<ul class="social">
-					<li><a class="social-linkedin" href="https://www.linkedin.com/in/reddingcharles/">
-						<i></i>
-						<div cl
-            ass="tooltip"><span>LinkedIn</span></div>
-						</a></li>
-					<li><a class="social-github" href="https://github.com/crredding">
-						<i></i>
-						<div class="tooltip"><span>Github</span></div>
-						</a></li>
-					<!--<li><a class="social-google" href="#">
-						<i></i>
-						<div class="tooltip"><span>Google+</span></div>
-						</a></li>
-					<li><a class="social-facebook" href="#">
-						<i></i>
-						<div class="tooltip"><span>Pinterest</span></div>
-						</a></li>
-					<li><a class="social-instagram" href="#">
-						<i></i>
-						<div class="tooltip"><span>Instagram</span></div>
-          </a></li>-->
 				</ul>
 			</div>
 			<div class="clearfix"> </div>
@@ -407,5 +301,33 @@ ubmit-button -->
 </div>
 <script src="static/js/jquery.nicescroll.js"></script>
 <script src="static/js/scripts.js"></script>
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML = "Got it!"
+    // x.innerHTML = "Latitude: " + position.coords.latitude +
+    // "<br>Longitude: " + position.coords.longitude;
+}
+</script>
+<script>
+function updateTextInput(val) {
+          document.getElementById('textInput').value=val;
+        }
+</script>
+<!-- Jquery js -->
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+
+<!-- Slider js -->
+<!-- <script src="http://propeller.in/components/range-slider/js/wNumb.js"></script> -->
+
 </body>
 </html>
