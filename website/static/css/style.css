@@ -3345,7 +3345,7 @@ input[type="file"] {
 		padding: 36px 0 0;
 	}
 	.details-shade, .details-grid {
-		min-height: 244px;
+		min-height: 190px;
 	}
 	ul.first {
 		text-align: center;

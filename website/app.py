@@ -32,7 +32,8 @@ def submit():
     f1 = tuple((float(request.form['f1_weight']), request.form['feature1']))
     f2 = tuple((float(request.form['f2_weight']), request.form['feature2']))
     f3 = tuple((float(request.form['f3_weight']), request.form['feature3']))
-    recs = model.recommend(f1, f2, f3, lat, lng).to_dict('records')
+    r = float(request.form['range'])
+    recs = model.recommend(f1, f2, f3, lat, lng, r).to_dict('records')
     for rec in recs:
         rec['split_address'] = rec['address'].replace(' ', '+') + '+seattle'
     # for rec in recs:
@@ -42,6 +43,8 @@ def submit():
     #                         rec['name'], google_secrets['key']))
     #     except:
     #         rec['photo'] = 'static/images/default.png'
+    print(r)
+    print(recs)
     return render_template('recommendations.html', recs=recs)
 
 @app.route('/shop_image/<shop_id>')
