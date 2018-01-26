@@ -36,27 +36,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <link href='//fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- //web-fonts -->
-<!-- s
-<script>
-  send_away = function(){
-    f1_name = $('#feature1').val()
-    f1_weight = $('#f1_weight').val()
-    f2_name = $('#feature2').val()
-    f2_weight = $('#f2_weight').val()
-    f3_name = $('#feature3').val()
-    f3_weight = $('#f3_weight').val()
+</head>
+<div class="modal fade" id="myModalbook" role="dialog">
+  <div class="modal-dialog">
+  <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
 
-    $.post({
-    url: '/submit',
-    contentType: "application/json",
-    data: JSON.stringify(f1_name, f2_name, f3_name, f1_weight, f2_weight, f3_weight),
-    success: function(result){
-      $(".hidden").css("display", "inline").html(result)
-  }
-  });
-}
-</script>
-ubmit-button -->
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <h3 class="w3ls-title book">GET GOING!</h3>
+      <div class="main-booking">
+         <div class="hotel-right  vlcone">
+              <div class="pay-form">
+                <p><span></span>Your credit card information is encrypted.</p>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+ </div>
 <!-- pop-up-box -->
 <script src="static/js/jquery.magnific-popup.js" type="text/javascript"></script>
 	    <script>
@@ -70,8 +71,13 @@ ubmit-button -->
 					preloader: false,
 					midClick: true,
 					removalDelay: 300,
-					mainClass: 'my-mfp-zoom-in'
-				});
+					mainClass: 'my-mfp-zoom-in';
+          parentText = document.getElementById("parentTextBox")
+          transferText();
+				})
+        function transferText(){
+          popupText.value = parentText.value}
+        };
 			});
 		</script>
 <!--//pop-up-box -->
@@ -204,7 +210,7 @@ ubmit-button -->
         {% for rec in recs %}
 		     <div class="hotel-rooms">
 					<div class="hotel-left">
-						<a data-toggle="modal" data-target="#myModalbook"><span class="glyphicon glyphicon-bed" aria-hidden="true"></span>{{rec.name}}<!--<img src="images/star1.png" alt="">--></a>
+						<a data-toggle="modal" data-target="#myModalbook"><span class="glyphicons glyphicons-bed" aria-hidden="true"></span>{{rec.name}}<!--<img src="images/star1.png" alt="">--></a>
 						<p></p>
 						<div class="hotel-left-grids">
 							<div class="hotel-left-one">
@@ -223,7 +229,7 @@ ubmit-button -->
 					<div class="hotel-right text-right">
 						<!-- <h4><span>$8,750</span> $4,850</h4> -->
 						<!-- <p>Best price</p>-->
-						  <a href="https://www.google.com/maps/search/?api=1&query={{rec.split_address}}" data-toggle="modal" data-target="#myModalbook" class="seat-button hotel">Go here</a>
+						  <a href="http://www.maps.google.com/?q={{rec.split_address}}" class="seat-button hotel">Go here</a>
 					</div>
 					<div class="clearfix"></div>
 				</div>

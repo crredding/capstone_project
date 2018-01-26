@@ -198,24 +198,25 @@ ubmit-button -->
     <div class="col-lg-6 in-gp-tl">
       <div class="input-group">
         <span class="input-group-btn">
-          <button onclick="getLocation()" class="btn btn-default" type="button">Get your location!</button>
+          <a><button onclick="getLocation()" class="btn btn-default" type="button">Get your location!</button>
         </span>
         <div class="hotel-right text-right">
           <h5>
           <p><span id="demo"></span></p>
         </h5>
         </div>
+        </a>
 
         <!--<input type="text" class="form-control" placeholder="<-- click me">
       </div><!-- /input-group -->
     </div><!-- /.col-lg-6 -->
 
   <form action="/submit" method="post">
-      <h3 class='hdg'> How far will you go?</h3>
+      <a><h3 class='hdg'>How far will you go?</h3><output name="Outputrange" id="OutputId">10</output></a>
       <div class="slidecontainer">
         <input type="range" min="1" max="20" step=0.1 value="10" class="slider" name="range" id="rangeid" oninput="OutputId.value = rangeid.value">
         <output for="range" onforminput='range = range.valueAsNumber;'></output>
-        <output name="Outputrange" id="OutputId">10</output>
+
       </div>
     <div class='drop_down_feature'>
       <select name="feature1">
@@ -288,7 +289,7 @@ ubmit-button -->
     <br>
   </form>
 
-		<!--/footer-->
+		<!-- /footer-->
     <!-- <div class="w3agile footer"> -->
 			<!-- <div class="col-md-3 w3agile_footer_grid">
 				<h3>About Us</h3>
