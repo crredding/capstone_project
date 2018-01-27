@@ -211,12 +211,14 @@ ubmit-button -->
       <br>
       </div>
       </a>
+      <div class='rangeslider'>
       <a><h3 class='hdg'>How far will you go?</h3><output name="Outputrange" id="OutputId">10</output></a>
-      <div class="slidecontainer">
-        <input type="range" min="1" max="20" step=0.1 value="10" class="slider" name="range" id="rangeid" oninput="OutputId.value = rangeid.value">
-        <output for="range" onforminput='range = range.valueAsNumber;'></output>
-
-      </div>
+        <div class="slidecontainer">
+          <output for="range" onforminput='range = range.valueAsNumber;' id=inlineslider></output>
+          <input type="range" min="1" max="20" step=0.1 value="10" class="slider" name="range" id="rangeid" oninput="OutputId.value = rangeid.value">
+          <br>
+        </div>
+    </div>
     <div class='drop_down_feature'>
       <select name="feature1">
         <option value='' disabled selected>Select your option</option>
