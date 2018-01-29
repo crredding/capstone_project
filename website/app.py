@@ -4,7 +4,6 @@ import yaml
 from recommender_model import RecommenderModel
 from google_api_functions import *
 from io import BytesIO
-#from PIL import Image
 from pathlib import Path
 import base64
 
@@ -35,12 +34,10 @@ def tech():
 #This works with form input
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
+    print(request.form['coord'])
     f1 = tuple((float(request.form['f1_weight']), request.form['feature1']))
-    print(f1)
     f2 = tuple((float(request.form['f2_weight']), request.form['feature2']))
-    print(f2)
     f3 = tuple((float(request.form['f3_weight']), request.form['feature3']))
-    print(f3)
     lat = request.form['coord'].split(',')[0]
     lng = request.form['coord'].split(',')[1]
     r = float(request.form['range'])

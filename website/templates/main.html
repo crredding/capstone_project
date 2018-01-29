@@ -181,25 +181,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!--<input type="text" class="form-control" placeholder="<-- click me">
       </div><!-- /input-group -->
     <!-- </div><!-- /.col-lg-6 -->
-    <form id='input-form' action='/submit' method='post'>
-        <a><button onclick="getLocation()" class="btn btn-default" type="button">Get your location!</button>
+    <form name='inputform' action='/submit' method='post'>
+        <!-- <a><button onclick="getLocation()" class="btn btn-default" type="button">Get your location!</button> -->
       <div>
-        <h5>
-        <input type='hidden' name='coord' id="coord"></input>
-      </h5>
-      <br>
+        <input type='hidden' name="coord" id="coord"></input>
       </div>
       </a>
       <div class='rangeslider'>
-      <a><h3 class='hdg'>How far will you go?</h3><output name="Outputrange" id="OutputId">1</output></a>
+      <a><h3 class='hdg'>How far will you go?<output name="Outputrange" id="OutputId">0.1 Miles</output></h3></a>
         <div class="slidecontainer">
           <output for="range" onforminput='range = range.valueAsNumber;' id=inlineslider></output>
-          <input type="range" min="1" max="20" step=0.1 value="1" class="slider" name="range" id="rangeid" oninput="OutputId.value = rangeid.value">
+          <input type="range" min="0.1" max="20" step=0.1 value="0.1" class="slider" name="range" id="rangeid" oninput="OutputId.value = rangeid.value + ' Miles'" required>
           <br>
         </div>
     </div>
     <div class='drop_down_feature'>
-      <select name='feature1' id="feature1">
+      <select name='feature1' onchange="getLocation()" id="feature1" required>
         <option value='' disabled selected>Select your option</option>
         {% for feature in features %}
         <option value='{{feature}}'>{{feature}}</option>
@@ -207,35 +204,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
       </select>
       <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="1" class="slider" name='f1_weight' id="f1_weight">
+        <input type="range" min="1" max="100" value="1" class="slider" name='f1_weight' id="f1_weight" required>
         <output for="f1_weight" onforminput='f1_weight = f1_weight.valueAsNumber;'></output>
       </div>
-      <select name='feature2' id="feature2">
+      <select name='feature2' id="feature2" required>
         <option value='' disabled selected>Select your option</option>
         {% for feature in features %}
         <option value='{{feature}}'>{{feature}}</option>
         {% endfor %}
       </select>
-        <input type="range" min="1" max="100" value="1" class="slider" name='f2_weight' id="f2_weight">
+        <input type="range" min="1" max="100" value="1" class="slider" name='f2_weight' id="f2_weight" required>
         <output for="f2_weight" onforminput='f2_weight = f2_weight.valueAsNumber;'></output>
-      <select name='feature3' id="feature3">
+      <select name='feature3' id="feature3" required>
         <option value='' disabled selected>Select your option</option>
         {% for feature in features %}
         <option value='{{feature}}'>{{feature}}</option>
         {% endfor %}
       </select>
       <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="1" class="slider" name='f3_weight' id="f3_weight">
+        <input type="range" min="1" max="100" value="1" class="slider" name='f3_weight' id="f3_weight" required>
         <output for="f3_weight" onforminput='f3_weight = f3_weight.valueAsNumber;'></output>
       </div>
       <!--<input type="search" name="search" value="Where to go ?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Where to go ?';}" required="">-->
     <!--<button onclick="send_away();">Go!</button>-->
-    <div>
+    <!-- <div> -->
       <!-- <h5>
       <input type='hidden' name='all-data' id="all-data"></input>
     </h5> -->
-    <br>
-    </div>
+    <!-- </div> -->
     <div class="search">
       <input type='submit' value='Go!'>
       <!-- <button type='submit' onclick="on_click()">Go!</button> -->
@@ -307,38 +303,52 @@ function updateTextInput(val) {
           document.getElementById('textInput').value=val;
         }
 
-function on_click() {
-  values = get_input_values();
-  y.value = JSON.stringify(values)
-  send_values(values);
-}
+function checkform() {
+  if(document.inputform.length < 8) {
+    alert("Form isn't completed.");
+    return false;
+  } else {
+    return true;
+  }
+  }
 
-function get_input_values() {
-  let f1_name = $("select#feature1").val()
-  let f2_name = $("select#feature2").val()
-  let f3_name = $("select#feature3").val()
-  let f1_weight = $("input#f1_weight").val()
-  let f2_weight = $("input#f2_weight").val()
-  let f3_weight = $("input#f3_weight").val()
-  let range = $("input#rangeid").val()
-  let coord = $("input#coord").val()
-  return {'f1_name': f1_name,
-          'f2_name': f2_name,
-          'f3_name': f3_name,
-          'f1_weight': f1_weight,
-          'f2_weight': f2_weight,
-          'f3_weight': f3_weight,
-          'range': range,
-          'coord': coord,
-          }
-}
-function send_values(values) {
-  $.ajax({
-    url: '/submit',
-    contentType: 'application/json; charset=utf-8',
-    type: 'POST',
-    data: JSON.stringify(values)
-})}
+// $('input-form').submit(function() {
+//   getLocation().done(){
+//     return true;
+//   }})
+//
+// function on_click() {
+//   values = get_input_values();
+//   y.value = JSON.stringify(values)
+//   send_values(values);
+// }
+//
+// function get_input_values() {
+//   let f1_name = $("select#feature1").val()
+//   let f2_name = $("select#feature2").val()
+//   let f3_name = $("select#feature3").val()
+//   let f1_weight = $("input#f1_weight").val()
+//   let f2_weight = $("input#f2_weight").val()
+//   let f3_weight = $("input#f3_weight").val()
+//   let range = $("input#rangeid").val()
+//   let coord = $("input#coord").val()
+//   return {'f1_name': f1_name,
+//           'f2_name': f2_name,
+//           'f3_name': f3_name,
+//           'f1_weight': f1_weight,
+//           'f2_weight': f2_weight,
+//           'f3_weight': f3_weight,
+//           'range': range,
+//           'coord': coord,
+//           }
+// }
+// function send_values(values) {
+//   $.ajax({
+//     url: '/submit',
+//     contentType: 'application/json; charset=utf-8',
+//     type: 'POST',
+//     data: JSON.stringify(values)
+// })}
 
 </script>
 <!-- Jquery js -->
