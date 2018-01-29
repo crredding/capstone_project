@@ -45,13 +45,15 @@ class RecommenderModel():
         '''
 
         self.chosen_features = [f1, f2, f3]
+        self.mapped_df = self._map_features()
         self.distance_filtered_df = self._filter_by_lat_lng(lat, lng, r)
         self.sorted_df = self._sort_features()
         top_three_df = self.sorted_df.iloc[0:n]
-        top_three_df['percent_match'] = top_three_df.apply(lambda row: (row['combined_weights']
-                                                                      / top_three_df['combined_weights'].sum()
-                                                                      * 100),
-                                                           axis=1)
+        # top_three_df['percent_match'] = top_three_df.apply(lambda row:
+        #                                 (row['combined_weights']
+        #                                / top_three_df['combined_weights'].sum()
+        #                                * 100),
+        #                                 axis=1)
         return top_three_df
 
     def _sort_features(self):
@@ -65,25 +67,26 @@ class RecommenderModel():
 
         Output:
         -------
-        sorted_df: Pandas Dataframe with the recommended coffeeshops sorted by the
-        user's preferences.
+        sorted_df: Pandas Dataframe with the recommended coffeeshops sorted by
+        the user's preferences.
         '''
 
         normalizing_weight = sum([item[0] for item in self.chosen_features])
         self.feature_names = [item[1] for item in self.chosen_features]
-        self.mapped_df = self._map_features()
         for item in self.chosen_features:
-            self.mapped_df['{}'.format(item[1])] = (self.mapped_df['{}'.format(item[1])]
-                                                  * item[0]
-                                                  / normalizing_weight)
+            self.distance_filtered_df['{}'.format(item[1])] = (self.distance_filtered_df['{}'.format(item[1])]
+                                                             * item[0]
+                                                             / normalizing_weight)
 
-        self.mapped_df['combined_weights'] = self.mapped_df.apply(lambda row: (row[self.feature_names[0]]
+        self.distance_filtered_df['combined_weights'] = self.distance_filtered_df.apply(lambda row: (row[self.feature_names[0]]
                                                                              + row[self.feature_names[1]]
                                                                              + row[self.feature_names[2]]),
                                                                   axis=1)
 
-        sorted_df = self.mapped_df[['name', 'lat', 'lng', 'address', 'shop_id',
-                                    'distance_from_location', 'combined_weights']]
+        sorted_df = self.distance_filtered_df[['name', 'lat', 'lng', 'address',
+                                               'shop_id',
+                                               'distance_from_location',
+                                               'combined_weights']]
         sorted_df = sorted_df.sort_values('combined_weights', ascending=False)
         return sorted_df
 
@@ -102,15 +105,15 @@ class RecommenderModel():
         Output:
         -------
         distance_filtered_df: Pandas DataFrame - Pandas Dataframe only including
-        coffeeshops that are within the specified range of the input latitude and
-        longitude
+        coffeeshops that are within the specified range of the input latitude
+        and longitude
         '''
         current_location = (lat, lng)
-        self.df['distance_from_location'] = self.df.apply(lambda row: great_circle(current_location,
+        self.mapped_df['distance_from_location'] = self.mapped_df.apply(lambda row: great_circle(current_location,
                                                                      (row['lat'],
                                                                       row['lng'])).miles,
                                                           axis=1)
-        distance_filtered_df = self.df[self.df['distance_from_location'] < r]
+        distance_filtered_df = self.mapped_df[self.mapped_df['distance_from_location'] < r]
         return distance_filtered_df
 
     def _map_features(self):
@@ -129,14 +132,16 @@ class RecommenderModel():
         values
         '''
 
-        W = self.df.drop(['name', 'lat', 'lng', 'address', 'shop_id',
-                          'distance_from_location'], axis=1)
+        W = self.df.drop(['name', 'lat', 'lng', 'address', 'shop_id'], axis=1)
         mapping_df_columns = self.mapping_df.columns
         mapped_features = pd.DataFrame(np.dot(W,self.mapping_df),
                                        columns = mapping_df_columns)
+        #Normalize the mapped_feature values
+        normalized_df=((mapped_features - mapped_features.min()) /
+                       (mapped_features.max() - mapped_features.min()))
+
         feature_mapped_df = pd.concat([self.df[['name', 'lat', 'lng', 'address',
-                                      'shop_id',
-                                      'distance_from_location']].reset_index(drop=True),
-                               mapped_features], axis=1)
+                                      'shop_id']].reset_index(drop=True),
+                                      normalized_df], axis=1)
         #print(user_df)
         return feature_mapped_df

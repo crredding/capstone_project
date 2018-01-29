@@ -1103,7 +1103,7 @@ a.seat-button.two {
 /*-- /bus --*/
 /*--/about--*/
 .about-img{
-	float:left;
+	/* float:left; */
 	width:33.33333%;
 }
 .choose-grid h4 {
