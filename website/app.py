@@ -39,7 +39,7 @@ def submit():
     else:
         lat = default_lat
         lng = default_lng
-        r = 20
+        r = 1
     recs = model.recommend(f1, f2, f3, lat, lng, r).to_dict('records')
     for rec in recs:
         rec['split_address'] = rec['address'].replace(' ', '+') + '+seattle'
@@ -61,4 +61,4 @@ def submit():
 #     return render_template('recommendations.html', recs=recs)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', threaded=True, debug=True)
+    app.run(host='0.0.0.0', threaded=True)
