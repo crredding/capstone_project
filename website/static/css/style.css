@@ -846,7 +846,7 @@ background: #020202 url(../images/search.png) no-repeat 17px 8px;
     background-repeat: no-repeat;
     background-position: 96% center;
     outline: none;
-    margin-top:1.5em;
+    margin-top:0.8em;
     text-transform: uppercase;
     font-weight: 600
 }
