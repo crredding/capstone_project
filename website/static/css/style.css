@@ -471,11 +471,11 @@ p {
     -o-background-size: cover;
 }
 .details-shade {
-    padding: 58px 0 0;
+    padding: 100px 0 0;
     background: rgba(22, 21, 23, 0.6);
 }
 .details-shade,.details-grid{
-    min-height:275px;
+    min-height:315px;
 }
 .details-right h3 {
     color: #fff;
@@ -3615,7 +3615,7 @@ input[type="file"] {
 		font-size: 0.9em;
 	}
 	.details-shade, .details-grid {
-		min-height: 232px;
+		min-height: 315px;
 	}
 	.banner-bottom ul li a {
 		font-size: 0.8em;
@@ -3709,4 +3709,44 @@ input[type="file"] {
 
 .drop_down_feature {
 
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+	z-index: 99;
+}
+
+.sticky + .menu-notify {
+  padding-top: 102px;
+}
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+		bottom: 100%;
+		left: 50%;
+		margin-left: -60px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    /* position: absolute;
+    z-index: 1; */
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
