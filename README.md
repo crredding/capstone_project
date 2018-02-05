@@ -1,14 +1,8 @@
-# [Coffee Filter](https://www.coffeefilter.club)
-
-### Coffeeshop Recommender
+# [Coffee Filter](https://www.coffeefilter.club) -- Coffeeshop Recommender
 
 ## Project Motivation
 
 As a Data Scientist living in Seattle, I share a common addiction with many other Seattleites -- Prolific coffee consumption. Every coffeeshop is unique and comes with its own distinct features. While sites like Yelp do a decent job of ranking these places, there is a gap in the market that could be filled by a more robust recommendation system.
-
-# All Coffeeshops in Seattle
-
-![all shops in Seattle](images/all_shops_in_seattle.png)
 
 ## Goals
 
@@ -38,7 +32,9 @@ Shops with the following attributes were removed from the dataset:
 
 ![total_data_set](images/pres_data.jpg)
 
-This resulted in a dataset of approximately 14,000 reviews and 219,000 words.
+This resulted in a dataset of approximately 14,000 reviews and 219,000 words covering approximately 400 coffeeshops in the city.
+
+![all shops in Seattle](images/all_shops_in_seattle.png)
 
 ## Model Pipeline
 ![model](images/pres_pipeline.jpg)
