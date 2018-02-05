@@ -49,11 +49,6 @@ class RecommenderModel():
         self.distance_filtered_df = self._filter_by_lat_lng(lat, lng, r)
         self.sorted_df = self._sort_features()
         top_three_df = self.sorted_df.iloc[0:n]
-        # top_three_df['percent_match'] = top_three_df.apply(lambda row:
-        #                                 (row['combined_weights']
-        #                                / top_three_df['combined_weights'].sum()
-        #                                * 100),
-        #                                 axis=1)
         return top_three_df
 
     def _sort_features(self):
@@ -143,5 +138,4 @@ class RecommenderModel():
         feature_mapped_df = pd.concat([self.df[['name', 'lat', 'lng', 'address',
                                       'shop_id']].reset_index(drop=True),
                                       normalized_df], axis=1)
-        #print(user_df)
         return feature_mapped_df
