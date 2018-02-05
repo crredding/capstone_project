@@ -1,4 +1,5 @@
 # [Coffee Filter](https://www.coffeefilter.club) -- Coffeeshop Recommender
+(Best viewed mobile)
 
 ## Project Motivation
 
