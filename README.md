@@ -8,7 +8,7 @@ As a Data Scientist living in Seattle, I share a common addiction with many othe
 
 # All Coffeeshops in Seattle
 
-![all shops in Seattle](images/pres_all_shops_in_seattle.png)
+![all shops in Seattle](images/all_shops_in_seattle.png)
 
 ## Goals
 
@@ -41,7 +41,7 @@ Shops with the following attributes were removed from the dataset:
 This resulted in a dataset of approximately 14,000 reviews and 219,000 words.
 
 ## Model Pipeline
-![model](images/pres_model.jpg)
+![model](images/pres_pipeline.jpg)
 
 Using the data obtained above, I fit a Tf-Idf matrix using scikit-learn's implementation. As part of this process, I not only tokenized the text data, but also excluded a customized list of stopwords adapted from the NLTK library, including common words like “coffee”, “cafe”, “shop”, etc. which were unique to this project. Finally I passed the tokens through NLTK's WordNetLemmatizer to reduce inflectional forms and related wordings.
 
