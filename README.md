@@ -33,7 +33,7 @@ Shops with the following attributes were removed from the dataset:
 
 ![total_data_set](images/pres_data.jpg)
 
-This resulted in a dataset of approximately 14,000 reviews and 219,000 words covering approximately 400 coffee shops in the city.
+This resulted in a dataset of approximately 14,000 reviews and 219,000 words covering nearly 400 coffee shops in the city.
 
 ![all shops in Seattle](images/all_shops_in_seattle.png)
 
